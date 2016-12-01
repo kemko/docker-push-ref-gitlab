@@ -1,0 +1,23 @@
+[
+  {
+    "id":"update-github-status",
+    "execute-command":"/usr/local/bin/update-github-status.sh",
+    "command-working-directory": "/home/gitsync",
+    "pass-arguments-to-command": [
+        {"source": "payload", "name": "build_status"},
+        {"source": "payload", "name": "build_id"},
+        {"source": "payload", "name": "sha"},
+        {"source": "payload", "name": "build_name"},
+        {"source": "payload", "name": "repository.name"}
+    ]
+  },
+  {
+    "id": "sync-gitlab-mirror",
+    "execute-command": "/usr/local/bin/sync-gitlab-mirror.sh",
+    "command-working-directory": "/home/gitsync",
+    "pass-environment-to-command": [
+        {"source": "payload", "envname": "REF", "name": "ref"},
+        {"source": "payload", "envname": "REPO_NAME", "name": "repository.name"}
+    ]
+  }
+]

@@ -1,0 +1,22 @@
+---
+# The following variables are mandatory and do not have defaults.
+gitlab_account: "{{ lookup('env', 'GITLAB_ACCOUNT') | mandatory }}"
+
+github_account: "{{ lookup('env', 'GITHUB_ACCOUNT') | mandatory }}"
+
+gitlab_token: "{{ lookup('env', 'GITLAB_TOKEN') | mandatory }}"
+
+github_token: "{{ lookup('env', 'GITHUB_TOKEN') | mandatory }}"
+
+# This variable has a default and only needs to be changed if a self-hosted GitLab instance
+# is being used.
+gitlab_url: "{{ lookup('env','GITLAB_INSTANCE_URL') | default('https://gitlab.com', true) }}"
+
+# The remaining variables do not have to be provided by the user.
+webhook_version: 2.6.0 
+
+yum_packages:
+  - curl
+  - git
+
+webhook_tar_archive_location: /tmp/webhook-linux-amd64.tar.gz

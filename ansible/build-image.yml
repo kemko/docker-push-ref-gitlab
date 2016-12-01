@@ -1,0 +1,72 @@
+---
+- hosts: localhost
+  user: root
+
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Ensure the gitsync group exists
+      group:
+        name: gitsync
+        state: present
+
+    - name: Ensure the gitsync user account exists
+      user:
+        name: gitsync
+        comment: "Git Sync System Account"
+        group: gitsync
+        shell: /bin/bash
+        home: /home/gitsync
+
+    - name: Ensure dependency RPM packages are installed installed 
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_flattened:
+        - "{{ yum_packages }}"
+
+    - name: Install push-ref-gitlab
+      command: npm install -g https://github.com/avtar/push-ref-gitlab.git
+      args:
+        chdir: /tmp
+        creates: /usr/bin/push-ref-gitlab
+
+    - name: Download webhook release tar archive
+      get_url:
+        url: "https://github.com/adnanh/webhook/releases/download/{{ webhook_version }}/webhook-linux-amd64.tar.gz"
+        dest: "{{ webhook_tar_archive_location }}"
+    
+    - name: Extract webhook release tar archive
+      unarchive:
+        src: "{{ webhook_tar_archive_location }}"
+        dest: /opt/
+
+    - name: Delete webhook release tar archive
+      file:
+        path: "{{ webhook_tar_archive_location }}"
+        state: absent
+
+    - name: Ensure the /etc/webhook directory exists
+      file:
+        path: /etc/webhook
+        state: directory
+        mode: 0755
+
+    - name: Place the hooks.json configuration file in /etc/webhook
+      copy:
+        src: hooks.json
+        dest: /etc/webhook/hooks.json
+        mode: 0644 
+
+    - name: Place sync-gitlab-mirror.sh script in /usr/local/bin
+      copy:
+        src: sync-gitlab-mirror.sh
+        dest: /usr/local/bin/sync-gitlab-mirror.sh
+        mode: 0755
+
+    - name: Place update-github-status.sh script in /usr/local/bin
+      copy:
+        src: update-github-status.sh
+        dest: /usr/local/bin/update-github-status.sh
+        mode: 0755
