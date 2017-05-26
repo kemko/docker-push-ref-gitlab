@@ -27,7 +27,7 @@
         - "{{ yum_packages }}"
 
     - name: Install push-ref-gitlab
-      command: npm install -g https://github.com/avtar/push-ref-gitlab.git
+      command: npm install -g https://github.com/kemko/push-ref-gitlab.git
       args:
         chdir: /tmp
         creates: /usr/bin/push-ref-gitlab
