@@ -27,7 +27,8 @@ In order to use the supplied container the following environment variables will 
 * ``GITLAB_ACCOUNT`` - The Gitlab account where GitHub repositories will be mirrored
 * ``GITLAB_TOKEN`` - A Gitlab Personal Access Token 
 * ``GITLAB_CI_RUNNER_ID`` - A Gitlab CI Runner ID (please refer to notes further below)
-* ``GITLAB_INSTANCE_URL`` - ``https://gitlab.com`` should be a safe default unless a self-hosted Gitlab instance is being used
+* ``GITLAB_INSTANCE_URL`` - ``https://gitlab.com`` should be a safe default unless a self-hosted GitLab instance is being used
+* ``GITLAB_ENABLE_SHARED_RUNNERS`` - Boolean defaults to ``false``, ideally set to ``true`` if a self-hosted GitLab instance is being used
 
 ### Start a Container
 
