@@ -17,7 +17,7 @@
     "command-working-directory": "/home/gitsync",
     "pass-environment-to-command": [
         {"source": "payload", "envname": "REF", "name": "ref"},
-        {"source": "payload", "envname": "REPO_NAME", "name": "repository.name"}
+        {"source": "payload", "envname": "REPO_NAME", "name": "repository.full_name"}
     ]
   }
 ]
