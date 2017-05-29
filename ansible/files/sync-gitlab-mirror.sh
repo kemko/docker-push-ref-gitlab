@@ -5,6 +5,7 @@
 --gitlab-instance="${GITLAB_INSTANCE_URL}" \
 --github-repo-owner="${GITHUB_ACCOUNT}" \
 --github-repo-name="${REPO_NAME}" \
+--github-private-token="${GITHUB_TOKEN}" \
 --gitlab-repo-owner="${GITLAB_ACCOUNT}" \
 --gitlab-repo-name="${REPO_NAME}" \
 --ref="${REF}" \
