@@ -22,4 +22,4 @@ BUILD_URL="${GITLAB_INSTANCE_URL}"/"${GITLAB_ACCOUNT}"/"${REPOSITORY}"/builds/"$
 
 PAYLOAD="{\"state\":\"${GITHUB_STATE}\",\"target_url\":\"${BUILD_URL}\",\"context\":\"${BUILD_STAGE}\"}"
 
-curl -d "$PAYLOAD" -u "${GITHUB_ACCOUNT}":"${GITHUB_TOKEN}" https://api.github.com/repos/${GITHUB_ACCOUNT}/${REPOSITORY}/statuses/${SHA}
+curl -d "$PAYLOAD" -u "${GITHUB_ACCOUNT}":"${GITHUB_TOKEN}" https://api.github.com/repos/${GITHUB_ORG_ACCOUNT}/${REPOSITORY}/statuses/${SHA}

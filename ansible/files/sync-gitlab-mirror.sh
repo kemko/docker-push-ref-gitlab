@@ -10,4 +10,4 @@
 --ref="${REF}" \
 --gitlab-token="${GITLAB_TOKEN}" \
 --gitlab-runner-id="${GITLAB_CI_RUNNER_ID}" \
---cwd=/home/gitsync
+--cwd=/home/gitsync 2>&1
